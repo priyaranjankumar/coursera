@@ -2,7 +2,7 @@ var rect = require('./rectangle')
 
 function solveRect(l,b)
 {
-    console.log("Solving for rectange = "+ l + b);
+    console.log("Solving for rectange = "+ l +" "+ b);
     if (l <=0 || b <= 0)
     {
         console.log("Rectangle Dimension should be greate than Zero")
