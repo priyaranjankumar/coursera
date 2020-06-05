@@ -26,20 +26,21 @@ leaderRouter.route('/')
 
 
 
-leaderRouter.get('/:leaderId',(req,res,next)=>{
+leaderRouter.route('/:leaderId')
+.get((req,res,next)=>{
     res.end('Will send all details of the leader: '+req.params.leaderId+ ' to you');
   })
-  leaderRouter.post('/:leaderId',(req,res,next)=>{
+  leaderRouter.post((req,res,next)=>{
     res.statusCode = 403;
     res.end('POST operation not supported on /leader '+req.params.leaderId);
   })
   
-  leaderRouter.put('/:leaderId',(req,res,next)=>{
+  leaderRouter.put((req,res,next)=>{
     res.write('Updating the leader: '+req.params.leaderId);
     res.end('\nWill update the leader: '+ req.body.name+' with details ' +req.body.description);
   })
   
-  leaderRouter.delete('/:leaderId',(req,res,next)=>{
+  leaderRouter.delete((req,res,next)=>{
     res.end('Deleting  the leader :'+req.params.leaderId);
   });
   
