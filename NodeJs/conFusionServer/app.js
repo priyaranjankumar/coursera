@@ -12,6 +12,8 @@ var leaderRouter = require('./routes/leaderRouter');
 
 const mongoose = require('mongoose');
 const Dishes = require('./models/dishes');
+const Promotion = require('./models/promotions');
+const Leader = require('./models/leaders');
 const url = 'mongodb://localhost:2626/conFusion'
 const connect = mongoose.connect(url);
 
@@ -34,8 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dishes',dishRouter);
-app.use('/promotion',promoRouter);
-app.use('/leader',leaderRouter)
+app.use('/promotions',promoRouter);
+app.use('/leaders',leaderRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
