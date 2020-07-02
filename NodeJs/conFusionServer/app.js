@@ -8,6 +8,7 @@ var FileStore = require('session-file-store')(session);
 
 var passport = require('passport');
 var authenticate = require('./authenticate');
+var config = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,7 +21,7 @@ const Dishes = require('./models/dishes');
 const Promotion = require('./models/promotions');
 const Leader = require('./models/leaders');
 const { Store } = require('express-session');
-const url = 'mongodb://localhost:2626/conFusion'
+const url = config.mongoUrl;
 const connect = mongoose.connect(url);
 
 connect.then((db)=>{
@@ -40,37 +41,16 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
-app.use(session({
-  name: 'session-id',
-  secret: '12345-67890-09876-54321',
-  saveUninitialized: false,
-  resave: false,
-  store: new FileStore()
-}));
+
 
 app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //Because user has to authenticate first to access other endpoints
 //and he can access above endpoints without authenication.
 
-function auth (req, res, next) {
-  console.log(req.user);
-
-  if (!req.user) {
-    var err = new Error('You are not authenticated!');
-    err.status = 403;
-    next(err);
-  }
-  else {
-        next();
-  }
-}
-
-
-app.use(auth);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
