@@ -20,11 +20,12 @@ exports.getToken = function(user) {
 var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;
-
+var admin=false;
 exports.jwtPassport = passport.use(new JwtStrategy(opts,
     (jwt_payload, done) => {
         console.log("JWT payload: ", jwt_payload);
         User.findOne({_id: jwt_payload._id}, (err, user) => {
+            admin=new Boolean(user.admin);
             if (err) {
                 return done(err, false);
             }
@@ -36,5 +37,16 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
             }
         });
     }));
-
+    exports.verifyAdmin = function (req, res, next) {
+        if (!admin) {
+            console.log(admin);
+            var err = new Error('You are not authorized to perform this operation!');
+            err.status = 403;
+            return next(err);
+            
+        } else {
+            console.log(admin);
+            next();
+        }
+    }
 exports.verifyUser = passport.authenticate('jwt', {session: false});
