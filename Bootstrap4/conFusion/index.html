@@ -35,8 +35,7 @@
               
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
-                    <span class="fa fa-sign-in"></span> Login</a>
+                    <a id="loginModallink" href="#" ><span class="fa fa-sign-in" ></span> Login</a>
                 </span>
             </div>
         
@@ -70,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row" id="loginmodalbutton">
                             <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary btn-sm ml-1">Sign in</button>        
                         </div>
@@ -191,7 +190,7 @@
                 </div>
                 <div class="col-12 col-sm align-self-center">
                     
-                        <a role="button" class="btn btn-lg btn-block btn-warning"  data-toggle="modal" data-target="#ReserveModal"  data-placement="bottom"><strong>Reserve Table</strong></a>
+                        <a role="button" class="btn btn-lg btn-block btn-warning" id="ReserveModalbutton" ><strong>Reserve Table</strong></a>
                         
                 </div>
             </div>
@@ -353,7 +352,8 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
+          
+        $(document).ready(function(){          
             $("#mycarousel").carousel( { interval: 500 } );
             $("#carouselButton").click(function(){
                 if ($("#carouselButton").children("span").hasClass('fa-pause')) {
@@ -367,9 +367,16 @@
                     $("#carouselButton").children("span").addClass('fa-pause');                    
                 }
             });
+            
+        });
+        $("#loginModallink").click(function() { 
+            $("#loginModal").modal('show');
+        }); 
+        $("#ReserveModalbutton").click(function() { 
+            $("#ReserveModal").modal('show');
         });
 
-           
+        
     </script>
 
   
