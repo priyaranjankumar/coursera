@@ -53,3 +53,13 @@ body {
   bottom: 0px;
   z-index: 1; }
 
+.modal-content .modal-header {
+  background-color: #512DA8; }
+  .modal-content .modal-header .modal-title {
+    color: floralwhite; }
+
+.modal-content .modal-body {
+  background-color: #D1C5E8; }
+
+.modal-content #reservemodalbuttons {
+  background-color: #D1C5E8; }

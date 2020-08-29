@@ -72,3 +72,23 @@ body{
     bottom: 0px;
     z-index: 1;
 }
+
+
+
+.modal-content{
+    .modal-header{
+        background-color: #512DA8;
+        .modal-title{
+        
+            color: floralwhite;
+        }
+    }
+    .modal-body{
+        background-color: #D1C5E8;
+    }
+    
+    #reservemodalbuttons{
+    background-color: #D1C5E8;
+  }
+
+}
